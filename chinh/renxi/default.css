@@ -941,13 +941,6 @@ marquee{
     font-family: 'Roboto', sans-serif;
     background: rgba(0, 0, 0, 0.3);
 }
-#clock-box {
-  position: relative;
-  top: 500px; /* nhích lên trên khoảng 2–3 cm tùy màn hình */
-}
-body {
-  zoom: 0.9; /* 90% */
-}
 /* Ẩn toàn bộ nội dung khi ở dọc */
 @media screen and (orientation: portrait) {
   body {
