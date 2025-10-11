@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nhập mật khẩu 💖</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen flex items-center justify-center bg-gradient-to-br from-pink-200 via-rose-100 to-purple-200">
+  <div class="bg-white/80 backdrop-blur-lg shadow-2xl rounded-2xl p-8 w-80 text-center border border-pink-300">
+    <h1 class="text-2xl font-bold text-pink-600 mb-4">🔐 Nhập mật khẩu</h1>
+    <p class="text-gray-500 mb-6 text-sm">Hãy nhập tên của bạn để tiếp tục nhé 💕</p>
+    
+    <input id="password" type="text" placeholder="Nhập mật khẩu..." 
+           class="w-full p-3 border border-pink-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-pink-400 mb-4 text-center">
+    
+    <button onclick="checkPassword()" 
+            class="w-full bg-pink-500 hover:bg-pink-600 text-white font-semibold py-2 rounded-xl transition duration-200">
+      Xác nhận
+    </button>
+    
+    <p id="error" class="text-red-500 mt-3 text-sm hidden">Sai mật khẩu rồi 😢</p>
+  </div>
+
+  <script>
+    const passwords = ["anh", "ánh", "nhi", "linh", "nga", "vy", "hằng", "thiên", "thảo", "thư", "ý", "uyên"];
+
+    function normalizeVietnamese(str) {
+      return str
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase()
+        .trim();
+    }
+
+    function checkPassword() {
+      const input = document.getElementById("password").value;
+      const normalizedInput = normalizeVietnamese(input);
+      const normalizedPasswords = passwords.map(p => normalizeVietnamese(p));
+
+      const error = document.getElementById("error");
+
+      if (normalizedPasswords.includes(normalizedInput)) {
+        let targetPage = "";
+
+        // Xử lý đặc biệt cho "anh" và "ánh"
+        if (normalizedInput === "anh") {
+          targetPage = "anh1.html";
+        } else if (normalizedInput === "anh" && input.includes("ánh")) {
+          // phòng trường hợp người nhập có dấu ánh
+          targetPage = "anh2.html";
+        } else if (normalizeVietnamese(input) === "anh" && input.normalize("NFD").includes("\u0301")) {
+          // trường hợp nhập có dấu sắc (ánh)
+          targetPage = "anh2.html";
+        } else if (normalizeVietnamese(input) === "anh") {
+          targetPage = "anh1.html";
+        } else if (normalizeVietnamese(input) === "anh") {
+          targetPage = "anh1.html";
+        } else if (normalizeVietnamese(input) === "anh") {
+          targetPage = "anh1.html";
+        }
+
+        // Cách đơn giản hơn: xét theo input gốc
+        const raw = input.trim().toLowerCase();
+        if (raw === "anh") targetPage = "anh1.html";
+        else if (raw === "ánh") targetPage = "./chinh/index.html";
+        else targetPage = `${normalizedInput}.html`;
+
+        window.location.href = targetPage;
+      } else {
+        error.classList.remove("hidden");
+        error.classList.add("animate-bounce");
+        setTimeout(() => error.classList.remove("animate-bounce"), 800);
+      }
+    }
+
+    document.getElementById("password").addEventListener("keypress", function(e) {
+      if (e.key === "Enter") checkPassword();
+    });
+  </script>
+</body>
+</html>
