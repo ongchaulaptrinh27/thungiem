@@ -943,7 +943,7 @@ marquee{
     background: rgba(0, 0, 0, 0.3);
 }
 #wrap {
-  transform: scale(1);
+  transform: scale(0.5);
   transform-origin: top left;
   /* nếu cần giữ kích thước bố cục ban đầu, bạn có thể căn chỉnh margin/width */
   /* optional: display: inline-block; để tránh ảnh hưởng flow */
