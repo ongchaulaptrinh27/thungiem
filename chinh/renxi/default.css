@@ -943,7 +943,7 @@ marquee{
     background: rgba(0, 0, 0, 0.3);
 }
 #wrap {
-  transform: scale(0.5);
+  transform: scale(0.77);
   transform-origin: top left;
   /* nếu cần giữ kích thước bố cục ban đầu, bạn có thể căn chỉnh margin/width */
   /* optional: display: inline-block; để tránh ảnh hưởng flow */
@@ -953,5 +953,34 @@ html, body {
     height: 100%;
     overflow: hidden; /* nếu bạn không cần cuộn */
 }
+#canvas {
+  width: 100%;
+  height: auto;
+  max-width: 1100px;
+  display: block;
+  margin: 0 auto;
+}
+
+  /* Giữ canvas chuẩn cho PC */
+  #canvas {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+  }
+
+  /* Chỉ điện thoại */
+  @media screen and (max-width: 768px) {
+    #wrap {
+      transform: scale(0.9); /* có thể điều chỉnh tỉ lệ cho vừa màn hình điện thoại */
+      transform-origin: top center;
+    }
+    .box-santa, #clock-box {
+      width: 100%;
+    }
+    h2, p {
+      font-size: 16px; /* resize chữ vừa mắt */
+    }
+  }
 
 
