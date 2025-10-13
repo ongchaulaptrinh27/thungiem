@@ -194,17 +194,11 @@ function startMainAnimation() {
     var hold = 1;
 
     canvas.click(function(e) {
-        var rect = canvas[0].getBoundingClientRect();
-        var scaleX = rect.width / canvas[0].width;
-        var scaleY = rect.height / canvas[0].height;
-        var x = (e.clientX - rect.left) / scaleX;
-        var y = (e.clientY - rect.top)  / scaleY;
-        if (seed.hover(x, y)) {
-            hold = 0; 
-            canvas.unbind("click");
-            canvas.unbind("mousemove");
-            canvas.removeClass('hand');
-        }
+    hold = 0; 
+    canvas.unbind("click");
+    canvas.unbind("mousemove");
+    canvas.removeClass('hand');
+
     }).mousemove(function(e){
         var rect = canvas[0].getBoundingClientRect();
         var scaleX = rect.width / canvas[0].width;
